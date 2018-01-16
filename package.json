@@ -9,7 +9,8 @@
     "test": "ng test",
     "test:headless": "ng test --single-run --browsers ChromeHeadless --code-coverage --progress=false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "webdriver:update": "yarn webdriver-manager update"
   },
   "private": true,
   "dependencies": {
