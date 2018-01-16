@@ -1,0 +1,31 @@
+language: node_js
+node_js: "8"
+
+addons:
+  chrome: stable
+
+cache:
+  yarn: true
+  directories: node_modules
+
+before_script: yarn webdriver:update
+
+script:
+  - yarn build
+  - yarn lint
+  - yarn test:headless
+  - yarn e2e
+
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: $FIREBASE_TOKEN
+  project: "contraction-t"
+  on:
+    branch: master
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
