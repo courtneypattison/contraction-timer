@@ -8,7 +8,7 @@ describe('ContractionDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractionDetailComponent ]
+      declarations: [ContractionDetailComponent]
     })
     .compileComponents();
   }));
@@ -19,7 +19,7 @@ describe('ContractionDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create contraction detail component', () => {
     expect(component).toBeTruthy();
   });
 });

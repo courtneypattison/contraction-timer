@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ContractionDetailComponent } from './contraction-detail/contraction-detail.component';
 import { ContractionsComponent } from './contractions.component';
 
 describe('ContractionsComponent', () => {
@@ -8,7 +9,10 @@ describe('ContractionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractionsComponent ]
+      declarations: [
+        ContractionDetailComponent,
+        ContractionsComponent
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +23,7 @@ describe('ContractionsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create contractions component', () => {
     expect(component).toBeTruthy();
   });
 });
