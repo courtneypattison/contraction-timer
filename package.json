@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "build": "ng build --prod",
+    "build:ci": "ng build --prod --progress=false",
+    "e2e": "ng e2e",
+    "e2e:ci": "ng e2e --progress=false",
+    "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --progress=false",
     "test": "ng test",
-    "test:headless": "ng test --single-run --browsers ChromeHeadless --code-coverage --progress=false",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "webdriver:update": "yarn webdriver-manager update"
+    "test:ci": "ng test --single-run --browsers ChromeHeadless --code-coverage --progress=false"
   },
   "private": true,
   "dependencies": {
