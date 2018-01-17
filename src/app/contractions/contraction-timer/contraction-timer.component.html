@@ -1,1 +1,3 @@
-<button mat-raised-button color="primary">Start Timing</button>
+<div class="contraction-timer">
+  <button mat-raised-button color="primary" (click)="onToggleTiming()">{{ timing ? 'End Timing' : 'Start Timing' }}</button>
+</div>

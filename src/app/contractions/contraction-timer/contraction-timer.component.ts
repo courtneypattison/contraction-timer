@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractionTimerComponent implements OnInit {
 
+  timing = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onToggleTiming() {
+    this.timing = !this.timing;
+  }
 }
