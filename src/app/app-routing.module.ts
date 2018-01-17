@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContractionsModule } from './contractions/contractions.module';
 
 import { ContractionsComponent } from './contractions/contractions.component';
-import { ContractionDetailComponent } from './contractions/contraction-detail/contraction-detail.component';
+import { ContractionTimerComponent } from './contractions/contraction-timer/contraction-timer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'contractions', pathMatch: 'full' }

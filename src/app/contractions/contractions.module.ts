@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { ContractionsRoutingModule } from './contractions-routing.module';
 
-import { ContractionDetailComponent } from './contraction-detail/contraction-detail.component';
+import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { ContractionsComponent } from './contractions.component';
     ContractionsRoutingModule
   ],
   declarations: [
-    ContractionDetailComponent,
+    ContractionTimerComponent,
     ContractionsComponent
   ]
 })

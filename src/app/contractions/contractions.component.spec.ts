@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContractionDetailComponent } from './contraction-detail/contraction-detail.component';
+import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
 
 describe('ContractionsComponent', () => {
@@ -10,7 +10,7 @@ describe('ContractionsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ContractionDetailComponent,
+        ContractionTimerComponent,
         ContractionsComponent
       ]
     })
