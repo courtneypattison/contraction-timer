@@ -7,6 +7,7 @@ import { ContractionsRoutingModule } from './contractions-routing.module';
 
 import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
+import { ContractionListComponent } from './contraction-list/contraction-list.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ContractionsComponent } from './contractions.component';
   ],
   declarations: [
     ContractionTimerComponent,
-    ContractionsComponent
+    ContractionsComponent,
+    ContractionListComponent
   ]
 })
 export class ContractionsModule { }
