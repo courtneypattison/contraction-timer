@@ -7,6 +7,7 @@ import { config } from 'testing/mock-config';
 
 import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
+import { ContractionListComponent } from 'app/contractions/contraction-list/contraction-list.component';
 
 import { ContractionService } from './shared/contraction.service';
 
@@ -22,7 +23,8 @@ describe('ContractionsComponent', () => {
       ],
       declarations: [
         ContractionTimerComponent,
-        ContractionsComponent
+        ContractionsComponent,
+        ContractionListComponent
       ],
       providers: [ContractionService]
     })

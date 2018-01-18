@@ -9,6 +9,8 @@ import { ContractionTimerComponent } from './contraction-timer/contraction-timer
 import { ContractionsComponent } from './contractions.component';
 import { ContractionListComponent } from './contraction-list/contraction-list.component';
 
+import { ContractionService } from './shared/contraction.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { ContractionListComponent } from './contraction-list/contraction-list.co
     ContractionTimerComponent,
     ContractionsComponent,
     ContractionListComponent
-  ]
+  ],
+  providers: [ContractionService]
 })
 export class ContractionsModule { }

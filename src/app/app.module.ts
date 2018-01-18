@@ -11,8 +11,6 @@ import { environment } from 'environments/environment';
 
 import { AppComponent } from './app.component';
 
-import { ContractionService } from './contractions/shared/contraction.service';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -25,7 +23,6 @@ import { ContractionService } from './contractions/shared/contraction.service';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [ContractionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,7 +18,7 @@ export class ContractionTimerComponent implements OnInit {
 
   onToggleTiming() {
     if (this.timing) {
-      this.contractionService.postContraction(this.startTime, new Date());
+      this.contractionService.addContraction(this.startTime, new Date());
     } else {
       this.startTime = new Date();
     }

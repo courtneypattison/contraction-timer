@@ -1,3 +1,5 @@
-<p>
-  contraction-list works!
-</p>
+<ul>
+  <li *ngFor="let contraction of contractions">
+    {{contraction.startTime}} {{contraction.endTime}} {{contraction.frequency}} {{contraction.length}}
+  </li>
+</ul>

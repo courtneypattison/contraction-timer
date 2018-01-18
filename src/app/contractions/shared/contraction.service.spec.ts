@@ -12,7 +12,7 @@ describe('ContractionService', () => {
     TestBed.configureTestingModule({
       imports: [
         AngularFireModule.initializeApp(config),
-        AngularFirestoreModule.enablePersistence()
+        AngularFirestoreModule
       ],
       providers: [ContractionService]
     });
