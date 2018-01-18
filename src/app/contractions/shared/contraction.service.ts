@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
+import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class ContractionService {
 
-  constructor(private http: HttpClient) { }
+  constructor(angularFirestore: AngularFirestore) { }
 
   postContraction(startTime: Date, endTime: Date) {
-    // this.http.post( , startTime);
+    //
   }
 
 }

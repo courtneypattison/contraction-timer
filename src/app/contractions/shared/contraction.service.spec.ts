@@ -1,12 +1,19 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { config } from 'testing/mock-config';
 
 import { ContractionService } from './contraction.service';
 
 describe('ContractionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        AngularFireModule.initializeApp(config),
+        AngularFirestoreModule.enablePersistence()
+      ],
       providers: [ContractionService]
     });
   });

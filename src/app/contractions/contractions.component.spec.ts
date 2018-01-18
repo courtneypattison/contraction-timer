@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { config } from 'testing/mock-config';
 
 import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
@@ -12,7 +16,10 @@ describe('ContractionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        AngularFireModule.initializeApp(config),
+        AngularFirestoreModule
+      ],
       declarations: [
         ContractionTimerComponent,
         ContractionsComponent
