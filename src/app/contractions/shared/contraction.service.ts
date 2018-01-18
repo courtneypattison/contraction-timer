@@ -22,6 +22,6 @@ export class ContractionService {
   }
 
   getContractions(): Observable<any[]> {
-    return this.angularFirestore.collection('contractions').valueChanges();
+    return this.angularFirestore.collection('contractions', ref => ref.orderBy('startTime', 'desc')).valueChanges();
   }
 }
