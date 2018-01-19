@@ -13,8 +13,9 @@ import { ContractionService } from '../shared/contraction.service';
 export class ContractionTimerComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   private init = false;
-  private timing: boolean;
   private prevStartTime = new Date(0);
+
+  timing: boolean;
 
   constructor(private contractionService: ContractionService) { }
 
