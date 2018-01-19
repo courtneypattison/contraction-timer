@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 import { Contraction } from '../shared/contraction.model';
 import { ContractionService } from '../shared/contraction.service';
@@ -10,8 +12,9 @@ import { ContractionService } from '../shared/contraction.service';
   templateUrl: './contraction-list.component.html',
   styleUrls: ['./contraction-list.component.css']
 })
-export class ContractionListComponent implements OnInit {
-  contractions: Contraction[];
+export class ContractionListComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject();
+  private contractions: Contraction[];
 
   constructor(private contractionService: ContractionService) { }
 
@@ -20,6 +23,13 @@ export class ContractionListComponent implements OnInit {
   }
 
   getContractions() {
-    this.contractionService.getContractions().subscribe(contractions => this.contractions = contractions);
+    this.contractionService.getContractions()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(contractions => this.contractions = contractions);
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

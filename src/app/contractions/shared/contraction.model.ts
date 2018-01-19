@@ -1,6 +1,5 @@
 export interface Contraction {
-    startTime: Date;
-    endTime: Date;
-    frequency: number;
-    length: number;
+  startTime: Date;
+  duration: number;
+  interval: number;
 }
