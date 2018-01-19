@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 import { ContractionsRoutingModule } from './contractions-routing.module';
 
 import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
-import { ContractionListComponent } from './contraction-list/contraction-list.component';
+import { ContractionTableComponent } from './contraction-table/contraction-table.component';
 
 import { ContractionService } from './shared/contraction.service';
 
@@ -16,12 +17,13 @@ import { ContractionService } from './shared/contraction.service';
     CommonModule,
     FormsModule,
     MatButtonModule,
+    MatTableModule,
     ContractionsRoutingModule
   ],
   declarations: [
     ContractionTimerComponent,
     ContractionsComponent,
-    ContractionListComponent
+    ContractionTableComponent
   ],
   providers: [ContractionService]
 })

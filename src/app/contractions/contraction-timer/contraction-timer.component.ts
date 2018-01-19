@@ -12,6 +12,7 @@ import { ContractionService } from '../shared/contraction.service';
 })
 export class ContractionTimerComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
+  private init = false;
   private timing: boolean;
   private prevStartTime = new Date(0);
 
@@ -27,9 +28,10 @@ export class ContractionTimerComponent implements OnInit, OnDestroy {
         const interval = this.startTimeExists(this.prevStartTime) ? contractionState.startTime.valueOf() - this.prevStartTime.valueOf() : 0;
         this.timing = contractionState.timing;
 
-        if (!this.timing && this.startTimeExists(contractionState.startTime)) {
+        if (this.init && !this.timing && this.startTimeExists(contractionState.startTime)) {
           this.contractionService.addContraction(contractionState.startTime, endTime, interval);
         }
+        this.init = true;
       });
     this.contractionService.getPrevContraction()
       .takeUntil(this.ngUnsubscribe)

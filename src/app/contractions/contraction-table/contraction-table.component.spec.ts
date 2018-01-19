@@ -1,32 +1,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTableModule } from '@angular/material/table';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { config } from 'testing/mock-config';
 
-import { ContractionListComponent } from './contraction-list.component';
+import { ContractionTableComponent } from './contraction-table.component';
 
 import { ContractionService } from '../shared/contraction.service';
 
-describe('ContractionListComponent', () => {
-  let component: ContractionListComponent;
-  let fixture: ComponentFixture<ContractionListComponent>;
+describe('ContractionTableComponent', () => {
+  let component: ContractionTableComponent;
+  let fixture: ComponentFixture<ContractionTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         AngularFireModule.initializeApp(config),
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        MatTableModule
       ],
-      declarations: [ContractionListComponent],
+      declarations: [ContractionTableComponent],
       providers: [ContractionService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContractionListComponent);
+    fixture = TestBed.createComponent(ContractionTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
