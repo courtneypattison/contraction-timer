@@ -9,6 +9,7 @@ import { config } from 'testing/mock-config';
 import { ContractionTableComponent } from './contraction-table.component';
 
 import { ContractionService } from '../shared/contraction.service';
+import { TimePipe } from 'app/shared/time.pipe';
 
 describe('ContractionTableComponent', () => {
   let component: ContractionTableComponent;
@@ -21,7 +22,10 @@ describe('ContractionTableComponent', () => {
         AngularFirestoreModule,
         MatTableModule
       ],
-      declarations: [ContractionTableComponent],
+      declarations: [
+        ContractionTableComponent,
+        TimePipe
+      ],
       providers: [ContractionService]
     })
     .compileComponents();
@@ -33,7 +37,7 @@ describe('ContractionTableComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create contraction list component', () => {
+  it('should create contraction table component', () => {
     expect(component).toBeTruthy();
   });
 });
