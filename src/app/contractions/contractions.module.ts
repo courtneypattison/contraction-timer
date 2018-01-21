@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 
 import { ContractionsRoutingModule } from './contractions-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { ContractionTimerComponent } from './contraction-timer/contraction-timer.component';
 import { ContractionsComponent } from './contractions.component';
@@ -18,7 +19,8 @@ import { ContractionService } from './shared/contraction.service';
     FormsModule,
     MatButtonModule,
     MatTableModule,
-    ContractionsRoutingModule
+    ContractionsRoutingModule,
+    SharedModule
   ],
   declarations: [
     ContractionTimerComponent,

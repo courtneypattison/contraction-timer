@@ -6,6 +6,7 @@ import { TimePipe } from './time.pipe';
   imports: [
     CommonModule
   ],
-  declarations: [TimePipe]
+  declarations: [TimePipe],
+  exports: [TimePipe]
 })
 export class SharedModule { }

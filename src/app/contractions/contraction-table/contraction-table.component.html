@@ -2,17 +2,17 @@
   <mat-table #table [dataSource]="dataSource">
     <ng-container matColumnDef="startTime">
       <mat-header-cell *matHeaderCellDef> Start Time </mat-header-cell>
-      <mat-cell *matCellDef="let contraction"> {{contraction.startTime | date:'hh:mm:ssa' | lowercase}} </mat-cell>
+      <mat-cell *matCellDef="let contraction"> {{contraction.startTime | date:'hh:mma' | lowercase}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="duration">
       <mat-header-cell *matHeaderCellDef> Duration </mat-header-cell>
-      <mat-cell *matCellDef="let contraction"> {{contraction.duration | date:'mm'}}m {{contraction.duration | date:'ss'}}s </mat-cell>
+      <mat-cell *matCellDef="let contraction"> {{contraction.duration | time}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="interval">
       <mat-header-cell *matHeaderCellDef> Interval </mat-header-cell>
-      <mat-cell *matCellDef="let contraction"> {{contraction.interval | date:'mm'}}m {{contraction.interval | date:'ss'}}s </mat-cell>
+      <mat-cell *matCellDef="let contraction"> {{contraction.interval | time}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
