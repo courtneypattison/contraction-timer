@@ -5,11 +5,11 @@ body {
 }
 
 .wrapper {
-  flex: 1 1 auto;
-  flex-flow: column nowrap;
   display: flex;
-  min-height: 100vh;
+  flex: 1 1 auto;
   flex-direction: column;
+  flex-flow: column nowrap;
+  min-height: 100vh;
 }
 
 main {
