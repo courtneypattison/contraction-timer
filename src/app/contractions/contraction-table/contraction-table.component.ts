@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -19,6 +19,7 @@ export class ContractionTableComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['startTime', 'duration', 'interval'];
   dataSource: MatTableDataSource<Contraction>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private contractionService: ContractionService) { }
 
@@ -31,6 +32,7 @@ export class ContractionTableComponent implements OnInit, OnDestroy {
       .takeUntil(this.ngUnsubscribe)
       .subscribe(contractions => {
         this.dataSource = new MatTableDataSource<Contraction>(contractions);
+        this.dataSource.paginator = this.paginator;
       });
   }
 

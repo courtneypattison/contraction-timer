@@ -1,12 +1,15 @@
 .contraction-table {
-  max-height: 500px;
-  min-width: 300px;
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
   margin-top: 10px;
 }
 
 .mat-table {
   overflow: auto;
-  max-height: 500px;
+  max-height: 600px;
+}
+
+.mat-header-cell:not(:first-child), .mat-cell:not(:first-child) {
   text-align: end;
 }

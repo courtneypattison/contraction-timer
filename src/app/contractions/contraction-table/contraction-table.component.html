@@ -7,15 +7,20 @@
 
     <ng-container matColumnDef="duration">
       <mat-header-cell *matHeaderCellDef> Duration </mat-header-cell>
-      <mat-cell *matCellDef="let contraction"> {{contraction.duration | time}}</mat-cell>
+      <mat-cell *matCellDef="let contraction"> {{contraction.duration | time}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="interval">
+    <ng-container matColumnDef="interval" class="details">
       <mat-header-cell *matHeaderCellDef> Interval </mat-header-cell>
-      <mat-cell *matCellDef="let contraction"> {{contraction.interval | time}}</mat-cell>
+      <mat-cell *matCellDef="let contraction"> {{contraction.interval | time}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
 </div>
