@@ -6,15 +6,17 @@ import { Observable } from 'rxjs/Observable';
 
 import { Contraction } from '../shared/contraction.model';
 
+import { LoggerService } from '../../core/logger.service';
+
 @Injectable()
 export class ContractionService {
   private contractions = 'contractions';
 
-  constructor(private angularFirestore: AngularFirestore) { }
+  constructor(private angularFirestore: AngularFirestore, private logger: LoggerService) { }
 
   addContractionStartTime() {
     const startTime = new Date();
-    console.log(`Add contraction to firestore: (startTime: ${startTime}, timing: true, details: false).`);
+    this.logger.log(`Add contraction to firestore: (startTime: ${startTime}, timing: true, details: false).`);
     this.angularFirestore
       .collection<Contraction>(this.contractions)
       .add({
@@ -25,7 +27,7 @@ export class ContractionService {
   }
 
   updateContractionTiming(id: string) {
-    console.log(`Update contraction timing in firestore: (id: ${id}, timing: false).`);
+    this.logger.log(`Update contraction timing in firestore: (id: ${id}, timing: false).`);
     this.angularFirestore
       .doc<Contraction>(`${this.contractions}/${id}`)
       .update({ timing: false });
@@ -33,7 +35,7 @@ export class ContractionService {
 
   updateContractionDetails(id: string, startTime: Date, interval: number) {
     const duration = new Date().valueOf() - startTime.valueOf();
-    console.log(`Update contraction details in firestore: (id: ${id}, duration: ${duration}, interval: ${interval}).`);
+    this.logger.log(`Update contraction details in firestore: (id: ${id}, duration: ${duration}, interval: ${interval}).`);
     this.angularFirestore
       .doc<Contraction>(`${this.contractions}/${id}`)
       .update({
@@ -44,14 +46,14 @@ export class ContractionService {
   }
 
   getContractions(): Observable<Contraction[]> {
-    console.log('Get contractions from firestore.');
+    this.logger.log('Get contractions from firestore.');
     return this.angularFirestore
       .collection<Contraction>(this.contractions, ref => ref.orderBy('startTime', 'desc').where('details', '==', true))
       .valueChanges();
   }
 
   getRecentContractions(): Observable<Contraction[]> {
-    console.log('Get last one or two contractions from firestore.');
+    this.logger.log('Get last one or two contractions from firestore.');
     return this.angularFirestore
       .collection<Contraction>(this.contractions, ref => ref.orderBy('startTime', 'desc').limit(2))
       .snapshotChanges().map(actions => {

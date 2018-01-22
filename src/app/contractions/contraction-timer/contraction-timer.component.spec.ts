@@ -8,6 +8,9 @@ import { config } from 'testing/mock-config';
 import { ContractionTimerComponent } from './contraction-timer.component';
 
 import { ContractionService } from '../shared/contraction.service';
+import { LoggerService } from '../../core/logger.service';
+
+import { MockLoggerService } from 'testing/mock-logger.service';
 
 describe('ContractionTimerComponent', () => {
   let component: ContractionTimerComponent;
@@ -20,7 +23,10 @@ describe('ContractionTimerComponent', () => {
         AngularFirestoreModule
       ],
       declarations: [ContractionTimerComponent],
-      providers: [ContractionService]
+      providers: [
+        ContractionService,
+        { provide: LoggerService, useClass: MockLoggerService }
+      ]
     })
     .compileComponents();
   }));

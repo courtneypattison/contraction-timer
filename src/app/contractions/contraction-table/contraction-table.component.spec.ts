@@ -9,6 +9,10 @@ import { config } from 'testing/mock-config';
 import { ContractionTableComponent } from './contraction-table.component';
 
 import { ContractionService } from '../shared/contraction.service';
+import { LoggerService } from '../../core/logger.service';
+
+import { MockLoggerService } from 'testing/mock-logger.service';
+
 import { TimePipe } from 'app/shared/time.pipe';
 
 describe('ContractionTableComponent', () => {
@@ -26,7 +30,10 @@ describe('ContractionTableComponent', () => {
         ContractionTableComponent,
         TimePipe
       ],
-      providers: [ContractionService]
+      providers: [
+        ContractionService,
+        { provide: LoggerService, useClass: MockLoggerService }
+      ]
     })
     .compileComponents();
   }));

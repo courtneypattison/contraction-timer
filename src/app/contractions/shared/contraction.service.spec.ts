@@ -6,6 +6,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { config } from 'testing/mock-config';
 
 import { ContractionService } from './contraction.service';
+import { LoggerService } from '../../core/logger.service';
+
+import { MockLoggerService } from 'testing/mock-logger.service';
 
 describe('ContractionService', () => {
   beforeEach(() => {
@@ -14,7 +17,10 @@ describe('ContractionService', () => {
         AngularFireModule.initializeApp(config),
         AngularFirestoreModule
       ],
-      providers: [ContractionService]
+      providers: [
+        ContractionService,
+        { provide: LoggerService, useClass: MockLoggerService }
+      ]
     });
   });
 
