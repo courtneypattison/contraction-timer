@@ -1,3 +1,4 @@
 <div class="contraction-timer">
+  <p class="mat-display-4">{{ticks | time:':'}}</p>
   <button mat-raised-button color="primary" (click)="onToggleTiming()">{{ timing ? 'End Timing' : 'Start Timing' }}</button>
 </div>

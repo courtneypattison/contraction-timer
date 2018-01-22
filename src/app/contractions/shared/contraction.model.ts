@@ -3,6 +3,6 @@ export interface Contraction {
   startTime: Date;
   timing: boolean;
   details: boolean;
-  duration?: number;
-  interval?: number;
+  duration?: number; // Milliseconds
+  interval?: number; // Milliseconds
 }

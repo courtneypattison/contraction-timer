@@ -11,18 +11,20 @@ import { ContractionService } from '../shared/contraction.service';
   styleUrls: ['./contraction-timer.component.css']
 })
 export class ContractionTimerComponent implements OnInit, OnDestroy {
-  private ngUnsubscribe = new Subject();
+  private unsubscribeContractions = new Subject();
+  private unsubscribeTimer = new Subject();
   private prevStartTime = new Date(0);
 
   timing: boolean;
   id: string;
+  ticks = 0;
 
   constructor(private contractionService: ContractionService) { }
 
   ngOnInit() {
     this.contractionService
       .getRecentContractions()
-      .takeUntil(this.ngUnsubscribe)
+      .takeUntil(this.unsubscribeContractions)
       .subscribe(contractions => {
         this.timing = true;
         let interval = 0;
@@ -38,9 +40,7 @@ export class ContractionTimerComponent implements OnInit, OnDestroy {
           if (!this.timing && !contractions[0].details) {
             this.contractionService.updateContractionDetails(this.id, contractions[0].startTime, interval);
           }
-        }
-
-        if (!contractions.length) {
+        } else {
           this.timing = false;
         }
       });
@@ -48,11 +48,23 @@ export class ContractionTimerComponent implements OnInit, OnDestroy {
 
 
   onToggleTiming() {
-    this.timing ? this.contractionService.updateContractionTiming(this.id) : this.contractionService.addContractionStartTime();
+    if (this.timing) {
+      this.contractionService.updateContractionTiming(this.id);
+      this.ticks = 0;
+      this.unsubscribeTimer.next();
+     } else {
+       this.contractionService.addContractionStartTime();
+       this.contractionService
+       .startTimer()
+       .takeUntil(this.unsubscribeTimer)
+       .subscribe(ticks => {
+          this.ticks = ticks * 1000; // Convert to milliseconds
+       });
+     }
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.unsubscribeContractions.next();
+    this.unsubscribeContractions.complete();
   }
 }

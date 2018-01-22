@@ -12,6 +12,8 @@ import { LoggerService } from '../../core/logger.service';
 
 import { MockLoggerService } from 'testing/mock-logger.service';
 
+import { TimePipe } from 'app/shared/time.pipe';
+
 describe('ContractionTimerComponent', () => {
   let component: ContractionTimerComponent;
   let fixture: ComponentFixture<ContractionTimerComponent>;
@@ -22,7 +24,10 @@ describe('ContractionTimerComponent', () => {
         AngularFireModule.initializeApp(config),
         AngularFirestoreModule
       ],
-      declarations: [ContractionTimerComponent],
+      declarations: [
+        ContractionTimerComponent,
+        TimePipe
+      ],
       providers: [
         ContractionService,
         { provide: LoggerService, useClass: MockLoggerService }

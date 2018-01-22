@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 
 import { Contraction } from '../shared/contraction.model';
 
@@ -63,5 +64,10 @@ export class ContractionService {
           return { id, ...data };
         });
       });
+  }
+
+  startTimer(): Observable<any> {
+    this.logger.log('Start timer.');
+    return Observable.timer(0, 1000);
   }
 }
