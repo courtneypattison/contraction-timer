@@ -3,10 +3,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/mergeMap';
 
 import { Contraction } from '../shared/contraction.model';
-import { ContractionState } from '../shared/contraction-state.model';
 
 @Injectable()
 export class ContractionService {
