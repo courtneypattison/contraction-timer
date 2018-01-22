@@ -1,5 +1,8 @@
 export interface Contraction {
+  id?: string;
   startTime: Date;
-  duration: number;
-  interval: number;
+  timing: boolean;
+  details: boolean;
+  duration?: number;
+  interval?: number;
 }

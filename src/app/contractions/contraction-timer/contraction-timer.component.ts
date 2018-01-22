@@ -12,41 +12,43 @@ import { ContractionService } from '../shared/contraction.service';
 })
 export class ContractionTimerComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
-  private init = false;
   private prevStartTime = new Date(0);
 
   timing: boolean;
+  id: string;
 
   constructor(private contractionService: ContractionService) { }
 
   ngOnInit() {
-    this.contractionService.initContractionState(false, new Date(0));
     this.contractionService
-      .getContractionState()
+      .getRecentContractions()
       .takeUntil(this.ngUnsubscribe)
-      .subscribe(contractionState => {
-        const endTime = new Date();
-        const interval = this.startTimeExists(this.prevStartTime) ? contractionState.startTime.valueOf() - this.prevStartTime.valueOf() : 0;
-        this.timing = contractionState.timing;
+      .subscribe(contractions => {
+        this.timing = true;
+        let interval = 0;
 
-        if (this.init && !this.timing && this.startTimeExists(contractionState.startTime)) {
-          this.contractionService.addContraction(contractionState.startTime, endTime, interval);
+        if (contractions.length === 2) {
+          interval = contractions[0].startTime.valueOf() - contractions[1].startTime.valueOf();
         }
-        this.init = true;
-      });
-    this.contractionService.getPrevContraction()
-      .takeUntil(this.ngUnsubscribe)
-      .subscribe(prevContraction => {
-        this.prevStartTime = prevContraction.startTime;
+
+        if (contractions.length) {
+          this.timing = contractions[0].timing;
+          this.id = contractions[0].id;
+
+          if (!this.timing && !contractions[0].details) {
+            this.contractionService.updateContractionDetails(this.id, contractions[0].startTime, interval);
+          }
+        }
+
+        if (!contractions.length) {
+          this.timing = false;
+        }
       });
   }
 
-  private startTimeExists(startTime: Date): boolean {
-    return startTime.valueOf() !== 0;
-  }
 
   onToggleTiming() {
-    this.contractionService.updateContractionState(!this.timing);
+    this.timing ? this.contractionService.updateContractionTiming(this.id) : this.contractionService.addContractionStartTime();
   }
 
   ngOnDestroy() {

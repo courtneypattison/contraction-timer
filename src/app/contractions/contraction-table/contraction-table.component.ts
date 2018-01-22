@@ -40,7 +40,3 @@ export class ContractionTableComponent implements OnInit, OnDestroy {
   }
 }
 
-export const mockContractions = [
-  {'duration': 642066, 'interval': 0, 'startTime': new Date()},
-  {'duration': 178321, 'interval': 0, 'startTime': new Date()},
-  {'duration': 1969, 'interval': 11593, 'startTime': new Date()}];
