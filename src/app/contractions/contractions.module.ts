@@ -13,6 +13,7 @@ import { ContractionsComponent } from './contractions.component';
 import { ContractionTableComponent } from './contraction-table/contraction-table.component';
 
 import { ContractionService } from './shared/contraction.service';
+import { ContractionSummaryComponent } from './contraction-summary/contraction-summary.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ContractionService } from './shared/contraction.service';
   declarations: [
     ContractionTimerComponent,
     ContractionsComponent,
-    ContractionTableComponent
+    ContractionTableComponent,
+    ContractionSummaryComponent
   ],
   providers: [ContractionService]
 })
