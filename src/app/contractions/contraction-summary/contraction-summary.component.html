@@ -1,3 +1,9 @@
-<p>
-  contraction-summary works!
-</p>
+<form>
+  <p class="mat-body">
+    In the last
+    <mat-form-field id="timeframe-form-field">
+      <input matInput [(ngModel)]="timeframe" [ngModelOptions]="{standalone: true}" type="number" step="0.1" min="0" max="168">
+    </mat-form-field>
+    h, on average, your contractions have been {{duration | time}} long and {{interval | time}} apart.
+  </p>
+</form>
