@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/takeUntil';
 
 import { ContractionService } from '../shared/contraction.service';
@@ -32,9 +33,18 @@ export class ContractionSummaryComponent implements OnInit, OnDestroy {
       });
   }
 
+  getOneContractionSummary() {
+    this.contractionService
+      .getContractionSummary(this.timeframe)
+      .take(1)
+      .subscribe(contractionSummary => {
+        this.averageDuration = contractionSummary.averageDuration;
+        this.averageInterval = contractionSummary.averageInterval;
+      });
+  }
+
   onUpdateSummary() {
-    this.getContractionSummary();
-    this.ngUnsubscribe.next();
+    this.getOneContractionSummary();
   }
 
   ngOnDestroy() {
