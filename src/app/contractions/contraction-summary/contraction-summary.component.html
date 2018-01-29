@@ -5,5 +5,6 @@
       <input matInput [(ngModel)]="timeframe" [ngModelOptions]="{standalone: true}" type="number" step="0.1" min="0" max="168">
     </mat-form-field>
     h, on average, your contractions have been {{duration | time}} long and {{interval | time}} apart.
+    <button mat-button color="primary" (click)="onUpdateSummary()">Update Summary</button>
   </p>
 </form>

@@ -4,8 +4,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
+import 'rxjs/add/operator/reduce';
 
 import { Contraction } from '../shared/contraction.model';
+import { ContractionSummary } from '../shared/contraction-summary.model';
 
 import { LoggerService } from '../../core/logger.service';
 
@@ -57,12 +59,41 @@ export class ContractionService {
     this.logger.log('Get last one or two contractions from firestore.');
     return this.angularFirestore
       .collection<Contraction>(this.contractions, ref => ref.orderBy('startTime', 'desc').limit(2))
-      .snapshotChanges().map(actions => {
+      .snapshotChanges()
+      .map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data() as Contraction;
           const id = a.payload.doc.id;
           return { id, ...data };
         });
+      });
+  }
+
+  getContractionSummary(timeframe: number): Observable<ContractionSummary> {
+    const startTimeframe = new Date().valueOf() - (timeframe * 3600000); // Hours to milliseconds
+    this.logger.log(`Get contraction summary for (timeframe: ${timeframe}, startTimeframe: ${new Date(startTimeframe)})`);
+    return this.angularFirestore
+      .collection<Contraction>(this.contractions, ref => ref
+        .where('startTime', '>=', new Date(startTimeframe))
+        .where('details', '==', true))
+      .valueChanges()
+      .map((contractions: Contraction[]) => {
+        const contractionCount = contractions.length;
+        if (contractionCount) {
+          return {
+            duration: contractions
+              .map(contraction => contraction.duration)
+              .reduce((accumulator, duration) => accumulator + duration) / contractionCount,
+            interval: contractions
+              .map(contraction => contraction.interval)
+              .reduce((accumulator, interval) => accumulator + interval) / contractionCount
+          };
+        } else {
+          return {
+            duration: 0,
+            interval: 0
+          };
+        }
       });
   }
 

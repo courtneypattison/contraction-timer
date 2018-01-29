@@ -1,21 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
+
+import { ContractionService } from '../shared/contraction.service';
 
 @Component({
   selector: 'ct-contraction-summary',
   templateUrl: './contraction-summary.component.html',
   styleUrls: ['./contraction-summary.component.css']
 })
-export class ContractionSummaryComponent implements OnInit {
-  timeframe: number;
-  duration: number;
-  interval: number;
+export class ContractionSummaryComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe = new Subject();
+  timeframe = 1.5;
+  duration = 0;
+  interval = 0;
 
-  constructor() { }
+  constructor(private contractionService: ContractionService) { }
 
   ngOnInit() {
-    this.timeframe = 1.5;
-    this.duration = 0;
-    this.interval = 0;
+    this.getContractionSummary();
   }
 
+  getContractionSummary() {
+    this.contractionService
+      .getContractionSummary(this.timeframe)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(contractionSummary => {
+        this.duration = contractionSummary.duration;
+        this.interval = contractionSummary.interval;
+      });
+  }
+
+  onUpdateSummary() {
+    this.getContractionSummary();
+    this.ngUnsubscribe.next();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }
