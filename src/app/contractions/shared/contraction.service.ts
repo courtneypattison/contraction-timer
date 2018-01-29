@@ -81,17 +81,17 @@ export class ContractionService {
         const contractionCount = contractions.length;
         if (contractionCount) {
           return {
-            duration: contractions
+            averageDuration: contractions
               .map(contraction => contraction.duration)
               .reduce((accumulator, duration) => accumulator + duration) / contractionCount,
-            interval: contractions
+            averageInterval: contractions
               .map(contraction => contraction.interval)
               .reduce((accumulator, interval) => accumulator + interval) / contractionCount
           };
         } else {
           return {
-            duration: 0,
-            interval: 0
+            averageDuration: 0,
+            averageInterval: 0
           };
         }
       });
