@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
 import { ContractionsRoutingModule } from './contractions-routing.module';
@@ -25,6 +26,7 @@ import { ContractionSummaryComponent } from './contraction-summary/contraction-s
     MatIconModule,
     MatInputModule,
     MatPaginatorModule,
+    MatSelectModule,
     MatTableModule,
     ContractionsRoutingModule,
     SharedModule

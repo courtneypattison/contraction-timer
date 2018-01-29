@@ -69,9 +69,10 @@ export class ContractionService {
       });
   }
 
-  getContractionSummary(timeframe: number): Observable<ContractionSummary> {
-    const startTimeframe = new Date().valueOf() - (timeframe * 3600000); // Hours to milliseconds
-    this.logger.log(`Get contraction summary for (timeframe: ${timeframe}, startTimeframe: ${new Date(startTimeframe)})`);
+  getContractionSummary(timeframe: number, timeUnit: string): Observable<ContractionSummary> {
+    // timeframe is either hours or minutes, so it must be converted to milliseconds
+    const startTimeframe = new Date().valueOf() - (timeframe * (timeUnit === 'h' ? 3600000 : 60000));
+    this.logger.log(`Get contraction summary for (timeframe: ${timeframe}${timeUnit}, startTimeframe: ${new Date(startTimeframe)})`);
     return this.angularFirestore
       .collection<Contraction>(this.contractions, ref => ref
         .where('startTime', '>=', new Date(startTimeframe))

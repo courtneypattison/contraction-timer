@@ -13,9 +13,10 @@ import { ContractionService } from '../shared/contraction.service';
 })
 export class ContractionSummaryComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
-  timeframe = 1.5;
+  timeframe = 1;
   averageDuration = 0;
   averageInterval = 0;
+  timeUnit = 'h';
 
   constructor(private contractionService: ContractionService) { }
 
@@ -25,7 +26,7 @@ export class ContractionSummaryComponent implements OnInit, OnDestroy {
 
   getContractionSummary() {
     this.contractionService
-      .getContractionSummary(this.timeframe)
+      .getContractionSummary(this.timeframe, this.timeUnit)
       .takeUntil(this.ngUnsubscribe)
       .subscribe(contractionSummary => {
         this.averageDuration = contractionSummary.averageDuration;
@@ -35,7 +36,7 @@ export class ContractionSummaryComponent implements OnInit, OnDestroy {
 
   getOneContractionSummary() {
     this.contractionService
-      .getContractionSummary(this.timeframe)
+      .getContractionSummary(this.timeframe, this.timeUnit)
       .take(1)
       .subscribe(contractionSummary => {
         this.averageDuration = contractionSummary.averageDuration;
